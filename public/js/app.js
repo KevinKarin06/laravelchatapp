@@ -1937,6 +1937,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['color'],
+  computed: {
+    className: function className() {}
+  },
   mounted: function mounted() {
     console.log('Component mounted.');
   }
@@ -6487,7 +6491,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nli[data-v-4009260c]{\n    background-color: lightgreen;\n    color: white;\n}\n", ""]);
+exports.push([module.i, "\nli[data-v-4009260c]{\n    background-color: lightgreen;\n    color: white;\n    border: 1px solid rgb(82, 81, 81);\n    margin-top: 2px;\n    margin-bottom: 2px;\n}\n", ""]);
 
 // exports
 
