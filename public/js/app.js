@@ -50279,7 +50279,7 @@ var app = new Vue({
   },
   methods: {
     send: function send() {
-      if (this.message.length != 0 && this.message != '') {
+      if (this.message != '') {
         this.chat.message.push(this.message);
         this.message = '';
       }
