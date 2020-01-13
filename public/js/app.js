@@ -1936,10 +1936,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['color'],
   computed: {
-    className: function className() {}
+    className: function className() {
+      return 'list-group-item-' + this.color;
+    }
   },
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -6491,7 +6496,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nli[data-v-4009260c]{\n    background-color: lightgreen;\n    color: white;\n    border: 1px solid rgb(82, 81, 81);\n    margin-top: 2px;\n    margin-bottom: 2px;\n}\n", ""]);
+exports.push([module.i, "\nli[data-v-4009260c]{\n  margin-top: 1px;\n  margin-bottom: 1px;\n}\n\n\n", ""]);
 
 // exports
 
@@ -38051,7 +38056,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "list-group-item" }, [_vm._t("default")], 2)
+  return _c("div", [
+    _c(
+      "li",
+      { staticClass: "list-group-item", class: _vm.className },
+      [_vm._t("default")],
+      2
+    ),
+    _vm._v(" "),
+    _c("small", { staticClass: "badge float-right" }, [_vm._v("You")])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

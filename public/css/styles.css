@@ -1,8 +1,22 @@
-*{
+html{
     font-family: Arial, Helvetica, sans-serif;
 }
 
 .list-group{
     overflow-y: scroll;
     height: 200px;
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+::-webkit-scrollbar-track{
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb{
+    background: #888;
+}
+
+::-webkit-scroll-thumb:hover{
+    background: #555;
 }

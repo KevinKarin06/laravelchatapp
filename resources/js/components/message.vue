@@ -1,5 +1,8 @@
 <template>
-   <li class="list-group-item"><slot></slot></li>
+<div>
+   <li class="list-group-item" :class="className"><slot></slot></li>
+   <small class="badge float-right">You</small>
+</div>
 </template>
 
 <script>
@@ -9,7 +12,7 @@
         ],
         computed: {
             className(){
-
+        return 'list-group-item-' + this.color;
             }
         },
         mounted() {
@@ -20,10 +23,9 @@
 
 <style scoped>
 li{
-    background-color: lightgreen;
-    color: white;
-    border: 1px solid rgb(82, 81, 81);
-    margin-top: 2px;
-    margin-bottom: 2px;
+  margin-top: 1px;
+  margin-bottom: 1px;
 }
+
+
 </style>
