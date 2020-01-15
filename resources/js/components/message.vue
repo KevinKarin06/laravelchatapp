@@ -8,7 +8,8 @@
 <script>
     export default {
         props:[
-           'color'
+           'color',
+           'sender'
         ],
         computed: {
             className(){

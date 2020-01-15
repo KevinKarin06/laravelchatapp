@@ -28,6 +28,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <li class="list-group-item active mt-2">Users Online</li>
+                 {{$user->name}}
             </div>
 
         </div>
