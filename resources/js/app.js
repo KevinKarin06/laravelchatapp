@@ -22,7 +22,8 @@ Vue.use(VueChatScroll)
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('message', require('./components/message.vue').default);
+Vue.component('message', require('./components/Message.vue').default);
+Vue.component('users', require('./components/Users.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -36,7 +37,8 @@ const app = new Vue({
         message: '',
         chat: {
             message: []
-        }
+        },
+        users:[]
     },
     methods: {
         send() {

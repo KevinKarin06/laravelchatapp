@@ -19,6 +19,7 @@
                     v-for="value in chat.message"
                     :key=value.index
                     color='success'
+                    sender= {{$user->name}}
                     >
                     @{{value}}
                 </message>
@@ -28,7 +29,11 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <li class="list-group-item active mt-2">Users Online</li>
-                 {{$user->name}}
+                <ul class="list-group" v-chat-scroll>
+                <users>
+                {{$user->name}}
+                </users>
+                </ul>
             </div>
 
         </div>

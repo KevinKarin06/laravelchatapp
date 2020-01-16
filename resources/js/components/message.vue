@@ -17,7 +17,7 @@
             }
         },
         mounted() {
-            console.log('Component mounted.')
+            console.log('Message Component mounted.')
         }
     }
 </script>
@@ -27,6 +27,4 @@ li{
   margin-top: 1px;
   margin-bottom: 1px;
 }
-
-
 </style>
