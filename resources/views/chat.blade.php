@@ -16,10 +16,10 @@
                 <li class="list-group-item active mt-2">Chat Room</li>
                 <ul class="list-group" v-chat-scroll>
                 <message
-                    v-for="value in chat.message"
+                    v-for="value,index in chat.message"
                     :key=value.index
-                    color='success'
-                    sender= {{$user->name}}
+                    :color="chat.color[index]"
+                    :user="chat.users[index]"
                     >
                     @{{value}}
                 </message>
@@ -30,8 +30,10 @@
             <div class="col-md-4 col-sm-12">
                 <li class="list-group-item active mt-2">Users Online</li>
                 <ul class="list-group" v-chat-scroll>
-                <users>
-                {{$user->name}}
+                <users
+                v-for="user in users"
+                :key=user.index>
+                @{{user}}
                 </users>
                 </ul>
             </div>
