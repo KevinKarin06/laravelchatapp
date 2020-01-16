@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/chat', 'ChatController@chat')->middleware('auth');
-Route::get('/send', 'ChatController@send');
+Route::get('chat', 'ChatController@chat')->middleware('auth');
+Route::post('send', 'ChatController@send');
+// Route::get('send', 'ChatController@send');
 
 Auth::routes();
 

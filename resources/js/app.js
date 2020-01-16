@@ -9,6 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import VueChatScroll from 'vue-chat-scroll'
+import Axios from 'axios';
 Vue.use(VueChatScroll)
 
 /**
@@ -43,10 +44,25 @@ const app = new Vue({
     methods: {
         send() {
             if (this.message != '') {
-                this.chat.message.push(this.message);
-                this.message = '';
+                 Axios.post('send',{
+                  message: this.message
+                 })
+                 .then((response) =>{
+                  console.log(response);
+                   this.message = '';
+                 })
+                 .catch((error) =>{
+                 console.log(error);
+                 })
 
             }
         }
+    },
+    mounted(){
+        Echo.private('chat')
+       .listen('ChatEvent', (e) => {
+        this.chat.message.push(e.message);
+        console.log(e);
+    })
     }
 });

@@ -60198,6 +60198,8 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chat-scroll */ "./node_modules/vue-chat-scroll/dist/vue-chat-scroll.js");
 /* harmony import */ var vue_chat_scroll__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -60206,6 +60208,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
 
 Vue.use(vue_chat_scroll__WEBPACK_IMPORTED_MODULE_0___default.a);
 /**
@@ -60237,11 +60240,28 @@ var app = new Vue({
   },
   methods: {
     send: function send() {
+      var _this = this;
+
       if (this.message != '') {
-        this.chat.message.push(this.message);
-        this.message = '';
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('send', {
+          message: this.message
+        }).then(function (response) {
+          console.log(response);
+          _this.message = '';
+        })["catch"](function (error) {
+          console.log(error);
+        });
       }
     }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    Echo["private"]('chat').listen('ChatEvent', function (e) {
+      _this2.chat.message.push(e.message);
+
+      console.log(e);
+    });
   }
 });
 
@@ -60292,8 +60312,6 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   key: "165368b9434623edd88a",
   cluster: "eu",
   encrypted: true
-})["private"]('chat').listen('ChatEvent', function (e) {
-  console.log(e.update);
 });
 
 /***/ }),
