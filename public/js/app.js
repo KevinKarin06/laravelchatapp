@@ -1939,8 +1939,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['color', 'user'],
+  props: ['color', 'user', 'typing'],
   computed: {
     className: function className() {
       return 'list-group-item-' + this.color;
@@ -47998,7 +47999,9 @@ var render = function() {
     _vm._v(" "),
     _c("small", { staticClass: "badge float-right" }, [
       _vm._v(_vm._s(_vm.user))
-    ])
+    ]),
+    _vm._v(" "),
+    _c("span", [_vm._v(_vm._s(_vm.typing))])
   ])
 }
 var staticRenderFns = []
@@ -60235,6 +60238,7 @@ var app = new Vue({
   el: '#app',
   data: {
     message: '',
+    typing: '',
     chat: {
       message: [],
       users: [],
@@ -60242,19 +60246,24 @@ var app = new Vue({
     },
     users: []
   },
+  watch: {
+    message: function message() {
+      Echo["private"]('chat').whisper('typing', {
+        message: this.message
+      });
+    }
+  },
   methods: {
     send: function send() {
-      var _this = this;
-
       if (this.message != '') {
         this.chat.message.push(this.message);
         this.chat.users.push('You');
         this.chat.color.push('success');
+        this.message = '';
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('send', {
-          message: this.message
+          message: this.chat.message[this.chat.message.length - 1]
         }).then(function (response) {
           console.log(response);
-          _this.message = '';
         })["catch"](function (error) {
           console.log(error);
         });
@@ -60262,16 +60271,23 @@ var app = new Vue({
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this = this;
 
     Echo["private"]('chat').listen('ChatEvent', function (e) {
-      _this2.chat.message.push(e.message);
+      _this.chat.message.push(e.message);
 
-      _this2.chat.users.push(e.userName);
+      _this.chat.users.push(e.userName);
 
-      _this2.chat.color.push('warning');
+      _this.chat.color.push('warning');
 
       console.log(e);
+    });
+    Echo["private"]('chat').listenForWhisper('typing', function (e) {
+      if (e.message != '') {
+        _this.typing = 'typing';
+      } else {
+        _this.typing = '';
+      }
     });
   }
 });

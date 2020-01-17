@@ -20,6 +20,7 @@
                     :key=value.index
                     :color="chat.color[index]"
                     :user="chat.users[index]"
+                    :typing='typing'
                     >
                     @{{value}}
                 </message>
