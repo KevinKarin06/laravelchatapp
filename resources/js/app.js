@@ -42,13 +42,16 @@ const app = new Vue({
             users:[],
             color:[]
         },
-        users:[]
+        numberOfUsers:0,
+        users:[],
+        totalMessages:0
     },
     watch:{
      message(){
         Echo.private('chat')
         .whisper('typing', {
-            message: this.message
+            message: this.message,
+            user: Laravel.user
         });
      }
     },
@@ -58,6 +61,7 @@ const app = new Vue({
                 this.chat.message.push(this.message);
                 this.chat.users.push('You');
                 this.chat.color.push('success');
+                this.totalMessages = this.chat.message.length
                 this.message = '';
                  Axios.post('send',{
                   message: this.chat.message[this.chat.message.length - 1]
@@ -76,17 +80,34 @@ const app = new Vue({
         Echo.private('chat')
        .listen('ChatEvent', (e) => {
         this.chat.message.push(e.message);
-        this.chat.users.push(e.userName);
+        this.chat.users.push(e.user);
         this.chat.color.push('warning');
+        this.totalMessages = this.chat.message.length
         console.log(e);
     });
     Echo.private('chat')
     .listenForWhisper('typing', (e)=>{
-        if(e.message != ''){
-            this.typing = 'typing'
+        if(e.message != '' && e.user != null){
+            this.typing = e.user.name+' '+'is typing...'
+            console.log(e.user)
         }else{
             this.typing = '';
         }
+    });
+
+    Echo.join('chat')
+    .here((users) => {
+    this.users = users
+    this.numberOfUsers = users.length;
+    console.log(this.users)
+    })
+    .joining((user) => {
+       this.numberOfUsers = this.numberOfUsers + 1
+       this.users.push(user)
+    })
+    .leaving((user) => {
+        this.numberOfUsers = this.numberOfUsers - 1
+        this.users.splice( this.users.indexOf(user.name), 1 );
     });
     }
 });

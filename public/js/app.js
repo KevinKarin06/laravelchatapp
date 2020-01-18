@@ -1939,7 +1939,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['color', 'user', 'typing'],
   computed: {
@@ -47999,9 +47998,7 @@ var render = function() {
     _vm._v(" "),
     _c("small", { staticClass: "badge float-right" }, [
       _vm._v(_vm._s(_vm.user))
-    ]),
-    _vm._v(" "),
-    _c("span", [_vm._v(_vm._s(_vm.typing))])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -60244,12 +60241,15 @@ var app = new Vue({
       users: [],
       color: []
     },
-    users: []
+    numberOfUsers: 0,
+    users: [],
+    totalMessages: 0
   },
   watch: {
     message: function message() {
       Echo["private"]('chat').whisper('typing', {
-        message: this.message
+        message: this.message,
+        user: Laravel.user
       });
     }
   },
@@ -60259,6 +60259,7 @@ var app = new Vue({
         this.chat.message.push(this.message);
         this.chat.users.push('You');
         this.chat.color.push('success');
+        this.totalMessages = this.chat.message.length;
         this.message = '';
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('send', {
           message: this.chat.message[this.chat.message.length - 1]
@@ -60276,18 +60277,33 @@ var app = new Vue({
     Echo["private"]('chat').listen('ChatEvent', function (e) {
       _this.chat.message.push(e.message);
 
-      _this.chat.users.push(e.userName);
+      _this.chat.users.push(e.user);
 
       _this.chat.color.push('warning');
 
+      _this.totalMessages = _this.chat.message.length;
       console.log(e);
     });
     Echo["private"]('chat').listenForWhisper('typing', function (e) {
-      if (e.message != '') {
-        _this.typing = 'typing';
+      if (e.message != '' && e.user != null) {
+        _this.typing = e.user.name + ' ' + 'is typing...';
+        console.log(e.user);
       } else {
         _this.typing = '';
       }
+    });
+    Echo.join('chat').here(function (users) {
+      _this.users = users;
+      _this.numberOfUsers = users.length;
+      console.log(_this.users);
+    }).joining(function (user) {
+      _this.numberOfUsers = _this.numberOfUsers + 1;
+
+      _this.users.push(user);
+    }).leaving(function (user) {
+      _this.numberOfUsers = _this.numberOfUsers - 1;
+
+      _this.users.splice(_this.users.indexOf(user.name), 1);
     });
   }
 });

@@ -2,7 +2,6 @@
 <div>
    <li class="list-group-item" :class="className"><slot></slot></li>
    <small class="badge float-right">{{user}}</small>
-   <span>{{typing}}</span>
 </div>
 </template>
 
