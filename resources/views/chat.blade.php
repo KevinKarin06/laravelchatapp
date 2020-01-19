@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Chat App</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link rel="stylesheet" href="{{asset('css/styles.css')}}">
-</head>
-
-<body>
+@include('layouts.header')
+<script>
+    window.Laravel = {!! json_encode([
+      'csrfToken' => csrf_token(),
+      'user' => Auth::user(),
+    ]) !!};
+  </script>
     <div class="container">
+        <div class="wellcome">
+            <h4 class="center-align">Wellcome come back {{Auth::user()->name}} </h4>
+        </div>
         <div class="row justify-content-center" id="app">
             <div class="col-md-6 col-sm-12">
                 <li class="list-group-item active mt-2">Chat Room
@@ -24,9 +20,13 @@
                         @{{value}}
                     </message>
                 </ul>
-                <span class="badge badge-primary">@{{typing}}</span>
-                <input type="text" class="form-control" placeholder="Type your message here..." v-model='message'
-                    @keyup.enter='send'>
+                <span id="type" class="badge badge-primary">@{{typing}}</span>
+                <loader v-show='isGone'></loader>
+                <div class="input-field">
+                    <input type="text" placeholder="Type your message here..." v-model='message'
+                        @keyup.enter='send'>
+                </div>
+                {{-- <i class="material-icons"id="send" @click='send'>send</i> --}}
             </div>
             <div class="col-md-4 col-sm-12">
                 <li class="list-group-item active mt-2">Users Online
@@ -41,13 +41,8 @@
         </div>
     </div>
     <script src="{{asset('js/app.js')}}"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 
-<!-- Scripts -->
-<script>
-    window.Laravel = {!! json_encode([
-      'user' => Auth::user()
-    ]) !!};
-  </script>
-</body>
-
+@include('layouts.footer')
 </html>

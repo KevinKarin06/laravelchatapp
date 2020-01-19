@@ -20,3 +20,29 @@ html{
 ::-webkit-scroll-thumb:hover{
     background: #555;
 }
+ i{
+     margin-left: 5px;
+ }
+
+ .nav-wrapper, .page-footer{
+	background-color: #3490dc;
+}
+#type{
+    float: left;
+    color: white;
+}
+
+.wellcome{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+ #wellcome{
+     background-image: url('/images/image.jpg');
+ }
+ nav ul li a:hover {
+    text-decoration: none !important;
+    color: white;
+ }
+ footer ul li:hover{
+     margin-left: 5px;
+ }
