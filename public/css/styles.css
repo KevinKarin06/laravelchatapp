@@ -36,13 +36,44 @@ html{
     margin-top: 10px;
     margin-bottom: 10px;
 }
- #wellcome{
-     background-image: url('/images/image.jpg');
- }
  nav ul li a:hover {
     text-decoration: none !important;
     color: white;
  }
- footer ul li:hover{
+ footer ul li a:hover{
+     margin-left: 5px;
+     text-decoration: none;
+     border-left: 2px sollid white;
+ }
+  /* footer ul li span{
+    margin-right: 5px;
+ } */
+  footer ul li a{
+     color: white;
      margin-left: 5px;
  }
+ footer{
+     margin-top: 0em !important;
+ }
+#wellcome{
+    background-image: url('/images/image.jpg');
+    background-size: cover;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+.text{
+    font-size: 1.5rem;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+

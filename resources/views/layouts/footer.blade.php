@@ -23,16 +23,16 @@
               data-position="right" data-tooltip="Click to see full Image"></a>
                 <p>Etudiant a L'IUT de Douala FI2 filiere GI
                 <br>
-                LaravelVueJs Learner  <i class="tiny bg-success material-icons">mood</i>
+                LaravelVueJs Learner<i class="tiny mb--4 material-icons">mood</i>
                 </p>
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Social Media</h5>
                 <ul>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    <li><span class="fab fa-whatsapp fa-lg"></span><a href="#!">Whatsapp</a></li>
+                    <li><span class="fab fa-instagram fa-lg"><a href="#!">Instagram</a></li>
+                    <li><span class="fab fa-linkedin fa-lg"><a href="#!">LinkedIn</a></li>
+                    <li><span class="fab fa-github fa-lg"><a href="#!">Github</a></li>
                 </ul>
             </div>
         </div>

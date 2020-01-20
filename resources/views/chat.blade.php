@@ -5,9 +5,10 @@
       'user' => Auth::user(),
     ]) !!};
   </script>
+  <main>
     <div class="container">
         <div class="wellcome">
-            <h4 class="center-align">Wellcome come back {{Auth::user()->name}} </h4>
+            <h4 class="center-align">Wellcome come back {{Auth::user()->name}}<span class="fas fa-user"></span></h4>
         </div>
         <div class="row justify-content-center" id="app">
             <div class="col-md-6 col-sm-12">
@@ -43,6 +44,6 @@
     <script src="{{asset('js/app.js')}}"></script>
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-
+  </main>
 @include('layouts.footer')
 </html>

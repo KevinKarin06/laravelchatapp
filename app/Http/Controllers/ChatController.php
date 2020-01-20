@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
+    protected $messages = [];
+
     public function chat(){
         $user = User::find(Auth::id());
         return view('chat',compact('user',$user));
@@ -25,5 +27,12 @@ class ChatController extends Controller
         public function send(Request $request){
             $user = User::find(Auth::id());
             event(new ChatEvent($request->message,$user));
+            $this->saveToSession($request);
+       }
+
+       private function saveToSession($request){
+         session()->put('chat',$request->message);
        }
 }
+
+
