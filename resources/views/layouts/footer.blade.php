@@ -29,10 +29,10 @@
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Social Media</h5>
                 <ul>
-                    <li><span class="fab fa-whatsapp fa-lg"></span><a href="#!">Whatsapp</a></li>
-                    <li><span class="fab fa-instagram fa-lg"><a href="#!">Instagram</a></li>
-                    <li><span class="fab fa-linkedin fa-lg"><a href="#!">LinkedIn</a></li>
-                    <li><span class="fab fa-github fa-lg"><a href="#!">Github</a></li>
+                    <li><span class="fab fa-whatsapp fa-lg"></span><a target="blank" href="https://wa.me/237694271964">Whatsapp</a></li>
+                    <li><span class="fab fa-instagram fa-lg"><a target="blank" href="https://www.instagram.com/karin_kevin">Instagram</a></li>
+                    <li><span class="fab fa-linkedin fa-lg"><a target="blank" href="https://www.linkedin.com/in/kevin-karin-728aa519a">LinkedIn</a></li>
+                    <li><span class="fab fa-github fa-lg"><a target="blank" href="https://github.com/KevinKarin06/laravelchatapp">Github</a></li>
                 </ul>
             </div>
         </div>

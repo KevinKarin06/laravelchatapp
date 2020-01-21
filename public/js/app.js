@@ -60439,7 +60439,8 @@ var app = new Vue({
     numberOfUsers: 0,
     users: [],
     totalMessages: 0,
-    isGone: false
+    isGone: false,
+    tempMessage: ''
   },
   watch: {
     message: function message() {
@@ -60458,6 +60459,7 @@ var app = new Vue({
         this.chat.users.push('You');
         this.chat.color.push('success');
         this.totalMessages = this.chat.message.length;
+        this.tempMessage = this.message;
         this.message = '';
         this.isGone = true;
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('send', {
@@ -60468,6 +60470,15 @@ var app = new Vue({
         })["catch"](function (error) {
           console.log(error);
           _this.isGone = false;
+          _this.message = _this.tempMessage;
+
+          _this.chat.message.pop();
+
+          _this.chat.users.pop();
+
+          _this.chat.color.pop();
+
+          _this.totalMessages = _this.chat.message.length;
           Vue.$toast.open({
             message: 'Oops Looks like something went wrong make sure you have a working internet connection and try again',
             type: 'error',
@@ -60525,6 +60536,12 @@ var app = new Vue({
         duration: 3000,
         position: 'top-right'
       });
+    });
+    Vue.$toast.open({
+      message: 'Note the messages are not saved into a database since this is just a demo app',
+      type: 'info',
+      duration: 5000,
+      position: 'top-right'
     });
   }
 });

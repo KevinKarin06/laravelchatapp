@@ -51,7 +51,8 @@ const app = new Vue({
         numberOfUsers:0,
         users:[],
         totalMessages:0,
-        isGone: false
+        isGone: false,
+        tempMessage:''
     },
     watch:{
      message(){
@@ -69,6 +70,7 @@ const app = new Vue({
                 this.chat.users.push('You');
                 this.chat.color.push('success');
                 this.totalMessages = this.chat.message.length
+                this.tempMessage = this.message
                 this.message = '';
                 this.isGone = true
                  Axios.post('send',{
@@ -81,6 +83,11 @@ const app = new Vue({
                  .catch((error) =>{
                  console.log(error);
                  this.isGone = false;
+                 this.message = this.tempMessage
+                 this.chat.message.pop()
+                 this.chat.users.pop()
+                 this.chat.color.pop()
+                 this.totalMessages = this.chat.message.length
                  Vue.$toast.open({
                     message: 'Oops Looks like something went wrong make sure you have a working internet connection and try again',
                     type: 'error',
@@ -138,5 +145,11 @@ const app = new Vue({
             position:'top-right'
         })
     });
+    Vue.$toast.open({
+        message:'Note the messages are not saved into a database since this is just a demo app',
+        type:'info',
+        duration: 5000,
+        position:'top-right'
+    })
     }
 });

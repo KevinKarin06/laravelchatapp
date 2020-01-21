@@ -27,24 +27,24 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           @guest
           <li>
-              <a href="{{ route('login') }}">{{ __('Login') }}</a>
+              <a href="{{ route('login') }}">{{ __('Login') }}<span class="fas fa-sign-in-alt ml-2"></a>
           </li>
           @if (Route::has('register'))
               <li>
-                  <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                  <a href="{{ route('register') }}">{{ __('Register') }}<span class="fas fa-user-plus ml-2"></a>
               </li>
           @endif
       @else
           <li>
               <a  href="#" >
-                  {{ Auth::user()->name }} <span class="caret"></span>
+                  {{ Auth::user()->name }}<span class="fas fa-user ml-2"></span>
               </a>
             </li>
               <li>
                   <a href="{{ route('logout') }}"
                      onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">
-                      {{ __('Logout') }}
+                      {{ __('Logout') }}<span class="fas fa-sign-out-alt ml-2"></span>
                   </a>
 
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -58,11 +58,11 @@
       <ul class="sidenav" id="slide-out">
         @guest
         <li>
-            <a href="{{ route('login') }}">{{ __('Login') }}</a>
+            <a href="{{ route('login') }}">{{ __('Login') }}<span class="fas fa-sign-in-alt ml-2"></a>
         </li>
         @if (Route::has('register'))
             <li>
-                <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                <a href="{{ route('register') }}">{{ __('Register') }}<span class="fas fa-user-plus ml-2"></a>
             </li>
         @endif
     @else
@@ -84,7 +84,7 @@
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    {{ __('Logout') }}<span class="fas fa-sign-out-alt ml-2"></span>
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
